@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 3001 });
+const port = process.env.PORT || 3001;
+const wss = new WebSocket.Server({ port });
 
 wss.on('connection', (ws) => {
   ws.on('message', (data) => {
@@ -11,4 +12,4 @@ wss.on('connection', (ws) => {
   });
 });
 
-console.log('WebSocket server running on ws://localhost:3001');
+console.log(`WebSocket server running on port ${port}`);
