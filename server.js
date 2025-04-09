@@ -4,11 +4,17 @@ const wss = new WebSocket.Server({ port });
 
 wss.on('connection', (ws) => {
   ws.on('message', (data) => {
-    wss.clients.forEach((client) => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(data);
-      }
-    });
+    try {
+      const parsed = JSON.parse(data);
+      const jsonString = JSON.stringify(parsed);
+      wss.clients.forEach((client) => {
+        if (client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(jsonString);
+        }
+      });
+    } catch (e) {
+      console.error('Invalid JSON:', data);
+    }
   });
 });
 
