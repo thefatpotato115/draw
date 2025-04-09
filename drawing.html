@@ -30,7 +30,7 @@
       drawDot(x, y);
 
       const now = Date.now();
-      if (now - lastSent > 5) { // faster update rate
+      if (now - lastSent > 5) {
         socket.send(JSON.stringify({ type: 'draw', x, y, color: '#fff', size: 4 }));
         lastSent = now;
       }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OBS Display</title>
+  <style>
+    body { background: #00FF00; }
+    canvas { position: absolute; top: 0; left: 0; }
+  </style>
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+  <canvas id="obsCanvas"></canvas>
+  <script>
+    const socket = new WebSocket('wss://draw-53de.onrender.com');
+    const canvas = document.getElementById('obsCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    socket.onmessage = (e) => {
+      try {
+        const msg = JSON.parse(e.data);
+        if (msg.type === 'draw') {
+          drawDot(msg.x, msg.y, msg.color, msg.size);
+        }
+      } catch (err) {
+        console.error('JSON parse error:', err);
+      }
+    };
+
+    function drawDot(x, y, color = '#fff', size = 4) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+  </script>
+</body>
+</html>
