@@ -17,10 +17,15 @@
     canvas.height = window.innerHeight;
 
     socket.onmessage = (e) => {
-      console.log('Received:', e.data);
-      const msg = JSON.parse(e.data);
-      if (msg.type === 'draw') {
-        drawDot(msg.x, msg.y, msg.color, msg.size);
+      console.log('Raw message:', e.data);
+      try {
+        const msg = JSON.parse(e.data);
+        console.log('Parsed message:', msg);
+        if (msg.type === 'draw') {
+          drawDot(msg.x, msg.y, msg.color, msg.size);
+        }
+      } catch (err) {
+        console.error('JSON parse error:', err);
       }
     };
 
