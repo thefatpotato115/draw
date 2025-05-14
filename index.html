@@ -1,0 +1,51 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drawing App</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+    }
+    h1 {
+      margin-bottom: 40px;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    a.button {
+      padding: 15px 30px;
+      text-decoration: none;
+      color: white;
+      background: #333;
+      border-radius: 10px;
+      transition: background 0.3s, transform 0.2s;
+      font-size: 1.2rem;
+    }
+    a.button:hover {
+      background: #555;
+      transform: scale(1.05);
+    }
+  </style>
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+  <h1>Drawing App Navigation</h1>
+  <div class="buttons">
+    <a class="button" href="drawing.html">Drawing Page</a>
+    <a class="button" href="receiver.html">Receiver Page</a>
+    <a class="button" href="obs.html">OBS Green Page</a>
+    <a class="button" href="alpha.html">OBS Transparent Page</a>
+  </div>
+</body>
+</html>
